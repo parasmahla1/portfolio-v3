@@ -17,11 +17,11 @@ export const About = () => {
           className="flex max-w-2xl flex-col gap-6 text-xl md:text-center sm:text-lg"
         >
           <p>
-          Hey there, I'm Paras Mahla  a passionate Web Developer who's all about crafting immersive online experiences. Specializing in React and Next.js, I bring ideas to life with a touch of innovation.
+          Hey there, I&apos;m Paras Mahla  a passionate Web Developer who&apos;s all about crafting immersive online experiences. Specializing in React and Next.js, I bring ideas to life with a touch of innovation.
           </p>
 
           <p>
-          Let's team up and turn your ideas into an unforgettable online presence!
+          Let&apos;s team up and turn your ideas into an unforgettable online presence!
           </p>
           <MotionDiv className="flex justify-start md:justify-center">
             <Link
