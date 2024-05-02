@@ -33,17 +33,6 @@ export const ThemeSwitcher = () => {
     )
   }
 
-  const handleChange = () => {
-
-    console.log('theme', resolvedTheme);
-    
-    if (theme === 'system') {
-      setTheme(resolvedTheme === 'light' ? 'dark' : 'light')
-    } else {
-      setTheme(theme === 'light' ? 'dark' : 'light')
-    }
-  }
-
   return (
     <Menu as="div" className="relative">
       <Menu.Button
@@ -69,7 +58,7 @@ export const ThemeSwitcher = () => {
           {Themes.map((themeInfo, index) => (
             <Menu.Item key={index} as="li">
               <button
-                onClick={handleChange}
+                onClick={() => setTheme(themeInfo.label.toLowerCase())}
                 className={`${
                   themeInfo.label.toLowerCase() !== 'system' &&
                   theme === themeInfo.label.toLowerCase()
