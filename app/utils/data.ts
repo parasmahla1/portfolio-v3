@@ -26,7 +26,16 @@ export const navigationLinks = [
         'Graphic Lab helps you to create visually appealing designs on a collabortive canvas.',
       tags: ['nextJS','react', 'typescript', 'shadcn', 'convex', 'clerk', 'tailwindcss', 'liveblocks']
     },
-    
+    {
+      name: 'Chat App',
+      repo: 'https://github.com/parasmahla1/chat-app',
+      url: 'https://chat-app-4dxw.onrender.com',
+      image:
+        '/chat-app.png',
+      description:
+        'Chat App is a real-time chat application where you can chat with your friends.',
+      tags: ['react', 'javascript', 'socket.io', 'tailwindcss', 'MongoDB', 'DaisyUI']
+    },
   ]
   
   export const skillsData = [
