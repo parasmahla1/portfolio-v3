@@ -36,6 +36,16 @@ export const navigationLinks = [
         'Chat App is a real-time chat application where you can chat with your friends.',
       tags: ['react', 'javascript', 'socket.io', 'tailwindcss', 'MongoDB', 'DaisyUI']
     },
+    {
+      name: 'URL Shortener',
+      repo: 'https://github.com/parasmahla1/url-shortener',
+      url: 'https://url-shortener-ten-kappa.vercel.app/',
+      image:
+        '/url-shortener.png',
+      description:
+        'A simple URL shortener application built using Next.js and MongoDB.',
+      tags: ['react', 'typescript', 'Next.js', 'tailwindcss', 'MongoDB', 'DaisyUI']
+    },
   ]
   
   export const skillsData = [
