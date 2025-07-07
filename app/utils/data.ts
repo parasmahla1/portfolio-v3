@@ -27,6 +27,16 @@ export const navigationLinks = [
       tags: ['nextJS','react', 'typescript', 'shadcn', 'convex', 'clerk', 'tailwindcss', 'liveblocks']
     },
     {
+      name: 'Wealth Flow',
+      repo: 'https://github.com/parasmahla1/Finance-Tracker',
+      url: 'https://finance-tracker-vwuc.vercel.app/',
+      image:
+        '/wealthflow.png',
+      description:
+        'Wealth Flow is a modern financial management platform for tracking expenses and budgets',
+      tags: ['nextJS','react', 'javascript', 'shadcn', 'postgresql', 'clerk', 'tailwindcss', 'gemini']
+    },
+    {
       name: 'Chat App',
       repo: 'https://github.com/parasmahla1/chat-app',
       url: 'https://chat-app-4dxw.onrender.com',
