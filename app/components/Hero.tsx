@@ -1,5 +1,6 @@
 import { MotionDiv, MotionH1, MotionP } from '../lib/motion'
 import { EmailBtn } from './EmailBtn'
+import { ResumeBtn } from './ResumeBtn'
 
 export const Hero = () => {
   return (
@@ -40,9 +41,10 @@ export const Hero = () => {
               delay: 1.2,
               duration: 0.3
             }}
-            className="mt-4"
+            className="mt-4 flex gap-4 sm:flex-col sm:items-center"
           >
             <EmailBtn />
+            <ResumeBtn />
           </MotionDiv>
         </div>
       </MotionDiv>
