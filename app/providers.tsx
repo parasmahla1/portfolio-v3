@@ -10,7 +10,7 @@ type Props = {
 export default function Providers({children} : Props) {
 
     return (
-        <ThemeProvider>
+        <ThemeProvider attribute="data-theme" defaultTheme="system" enableSystem>
             {children}
         </ThemeProvider>
     )

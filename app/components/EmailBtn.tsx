@@ -1,9 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-
 import copy from 'copy-to-clipboard'
-import { Mail } from 'lucide-react'
+import { Check, Copy, Mail } from 'lucide-react'
 
 export const EmailBtn = () => {
   const email = 'parasmahla80@gmail.com'
@@ -12,28 +11,19 @@ export const EmailBtn = () => {
   const handleCopyEmail = () => {
     copy(email)
     setCopied(true)
-
-    setTimeout(() => {
-      setCopied(false)
-    }, 3000)
+    window.setTimeout(() => setCopied(false), 2400)
   }
 
   return (
     <button
-      className={`${
-        copied && 'border-green-500 transition-none hover:border-green-500'
-      } relative flex items-center border px-4 py-4 text-lg transition before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-full before:origin-top-left before:scale-0 before:bg-target before:px-8 before:py-4 before:text-textLight before:opacity-0 before:transition before:content-['Copy'] hover:border-target hover:before:scale-100 hover:before:opacity-100`}
+      type="button"
       onClick={handleCopyEmail}
+      aria-label={copied ? 'Email copied to clipboard' : 'Copy email address'}
+      className="group flex min-h-12 items-center gap-3 border border-text px-4 py-3 text-left text-sm font-semibold transition hover:border-target hover:bg-target hover:text-textLight"
     >
-      <Mail className="sm:hidden" />{' '}
-      <span className="ml-4 border-l pl-4 sm:m-0 sm:border-0 sm:p-0">
-        {email}
-      </span>
-      {copied && (
-        <div className="absolute left-0 top-0 z-20 flex h-full w-full items-center justify-center bg-green-500 text-white">
-          Copied
-        </div>
-      )}
+      {copied ? <Check size={17} /> : <Mail size={17} />}
+      <span>{copied ? 'Copied to clipboard' : email}</span>
+      {!copied && <Copy size={15} className="opacity-50 transition-transform group-hover:translate-x-0.5" />}
     </button>
   )
 }

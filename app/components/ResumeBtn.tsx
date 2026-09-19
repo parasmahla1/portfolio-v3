@@ -1,20 +1,21 @@
 'use client'
 
-import { FileText } from 'lucide-react'
+import { ArrowUpRight, FileText } from 'lucide-react'
 
 export const ResumeBtn = () => {
-  const resumeLink = 'https://drive.google.com/file/d/1o0NB5u4N2K-SBUo72qmzUK-GhXB9JMEw/view?usp=drive_link' 
+  const resumeLink = 'https://drive.google.com/file/d/1-O6vy3HKD5zCgmgScnA8LapEhvVMb0Nj/view?usp=sharing'
 
   return (
     <a
       href={resumeLink}
       target="_blank"
       rel="noopener noreferrer"
-      className="relative flex items-center border px-4 py-4 text-lg transition before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-full before:origin-top-left before:scale-0 before:bg-target before:px-8 before:py-4 before:text-textLight before:opacity-0 before:transition before:content-['Resume'] hover:border-target hover:before:scale-100 hover:before:opacity-100"
+      className="group flex min-h-12 items-center gap-3 border border-text/35 px-4 py-3 text-sm font-semibold transition hover:border-target hover:text-target"
     >
-      <FileText className="sm:hidden" />{' '}
-      <span className="ml-4 border-l pl-4 sm:m-0 sm:border-0 sm:p-0">
-        Resume
+      <FileText size={17} />
+      Resume
+      <span className="flex h-6 w-6 items-center justify-center border border-target/30 text-target transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+        <ArrowUpRight size={15} strokeWidth={2.25} aria-hidden="true" />
       </span>
     </a>
   )

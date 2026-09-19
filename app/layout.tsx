@@ -1,27 +1,19 @@
-import type { Metadata } from "next";
-import { Saira } from "next/font/google";
-import "./globals.css";
-import Providers from "./providers";
+import type { Metadata } from 'next'
 
-const saira = Saira({ subsets: ["latin"] });
+import './globals.css'
+import Providers from './providers'
 
 export const metadata: Metadata = {
-  title: "Portfolio | Paras Mahla",
-  description: "Paras Mahla's portfolio",
-};
+  title: 'Paras Mahla — Full-stack developer',
+  description: 'The portfolio of Paras Mahla, a full-stack developer building clear, useful digital products.',
+}
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={saira.className}>
-        <Providers>
-        {children}
-        </Providers>
-        </body>
+      <body className="font-sans">
+        <Providers>{children}</Providers>
+      </body>
     </html>
-  );
+  )
 }

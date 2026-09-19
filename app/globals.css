@@ -4,42 +4,41 @@
 
 @layer base {
   :root {
-    --color-primary: 255 255 255;
-    --color-secondary: 245 245 245;
-    --color-secondary-hover: 229 229 229;
-    --color-target: 0 123 255;
-    --color-text: 17 21 23;
-    --color-text-light: 235 236 243;
+    --color-primary: 244 241 234;
+    --color-secondary: 231 227 217;
+    --color-secondary-hover: 216 211 200;
+    --color-target: 239 91 53;
+    --color-text: 25 25 22;
+    --color-text-light: 244 241 234;
+    --line: rgba(25, 25, 22, 0.18);
   }
-  
-  
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --color-primary: 11 11 11;
-      --color-secondary: 15 15 15;
-      --color-secondary-hover: 30 30 30;
-      --color-text: 235 236 243;
-    }
-  }
-
-  :root[data-theme="light"] {
-    --color-primary: 255 255 255;
-    --color-secondary: 245 245 245;
-    --color-secondary-hover: 229 229 229;
-    --color-text: 17 21 23;
-  }
-  
 
   :root[data-theme="dark"] {
-    --color-primary: 11 11 11;
-    --color-secondary: 15 15 15;
-    --color-secondary-hover: 30 30 30;
-    --color-text: 235 236 243;
+    --color-primary: 25 25 22;
+    --color-secondary: 42 42 37;
+    --color-secondary-hover: 59 58 50;
+    --color-target: 255 116 75;
+    --color-text: 244 241 234;
+    --color-text-light: 25 25 22;
+    --line: rgba(244, 241, 234, 0.19);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --color-primary: 25 25 22;
+      --color-secondary: 42 42 37;
+      --color-secondary-hover: 59 58 50;
+      --color-target: 255 116 75;
+      --color-text: 244 241 234;
+      --color-text-light: 25 25 22;
+      --line: rgba(244, 241, 234, 0.19);
+    }
   }
 }
 
 * {
-  border-color: rgb(var(--color-text));
+  box-sizing: border-box;
+  border-color: var(--line);
 }
 
 html {
@@ -47,6 +46,75 @@ html {
 }
 
 body {
-  background-color: rgb(var(--color-primary));
+  background: rgb(var(--color-primary));
   color: rgb(var(--color-text));
+  min-width: 320px;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgb(var(--color-target));
+  color: rgb(var(--color-text-light));
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 2px solid rgb(var(--color-target));
+  outline-offset: 4px;
+}
+
+.hero-surface {
+  background-image:
+    linear-gradient(to right, transparent 49.94%, var(--line) 50%, transparent 50.06%),
+    linear-gradient(to bottom, transparent 79%, var(--line) 79%, transparent 79.12%);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.display-type {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.075em;
+  line-height: 0.86;
+}
+
+.mono-label {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.rule {
+  border-top: 1px solid var(--line);
+}
+
+.project-image {
+  transition: transform 700ms cubic-bezier(0.2, 0.75, 0.25, 1), filter 500ms ease;
+}
+
+.project-card:hover .project-image,
+.project-card:focus-within .project-image {
+  filter: saturate(1.1) contrast(1.05);
+  transform: scale(1.035);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

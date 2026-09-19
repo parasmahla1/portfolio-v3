@@ -1,60 +1,37 @@
 import Link from 'next/link'
+import { ArrowUpRight } from 'lucide-react'
 
 import { MotionDiv } from '../lib/motion'
 import { SectionContainer } from './SectionContainer'
 
-import { MoveRight } from 'lucide-react'
-
 export const About = () => {
   return (
-    <SectionContainer id="about" title="About Me">
-      <div className="flex items-center justify-between md:justify-center">
+    <SectionContainer id="about" eyebrow="02 / the person behind the pixels" title="A little context.">
+      <div className="grid grid-cols-[1.2fr_.8fr] gap-20 md:grid-cols-1 md:gap-10">
         <MotionDiv
-          initial={{ opacity: 0, x: -24 }}
+          initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5, duration: 0.3 }}
-          className="flex max-w-2xl flex-col gap-6 text-xl md:text-center sm:text-lg"
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.6 }}
+          className="text-3xl leading-tight sm:text-2xl"
         >
-          <p>
-          Hey there, I&apos;m Paras Mahla  a passionate Web Developer who&apos;s all about crafting immersive online experiences. Specializing in React and Next.js, I bring ideas to life with a touch of innovation.
-          </p>
-
-          <p>
-          Let&apos;s team up and turn your ideas into an unforgettable online presence!
-          </p>
-          <MotionDiv className="flex justify-start md:justify-center">
-            <Link
-              href="#contact"
-              className="flex items-center gap-x-2 text-target transition-all hover:gap-x-3 hover:text-[#3385ff]"
-            >
-              Contact-me <MoveRight />
-            </Link>
-          </MotionDiv>
+          I care about the space between an idea and the moment it becomes useful.
+          That means asking better questions, sweating the small interactions, and
+          shipping the thing.
         </MotionDiv>
         <MotionDiv
-          initial={{ opacity: 0, x: 40 }}
+          initial={{ opacity: 0, x: 20 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5, duration: 0.3 }}
-          className="flex flex-1 justify-end pl-8 md:hidden"
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.6, delay: 0.08 }}
+          className="border-l pl-7 text-lg leading-relaxed opacity-75 md:max-w-xl"
         >
-          <div className="w-80 pb-10">
-            <div className="flex flex-wrap justify-center gap-4 opacity-70">
-              <span className="h-3 w-48 rounded-full bg-target"></span>
-              <span className="h-3 w-32 rounded-full bg-secondaryHover"></span>
-              <span className="h-3 w-20 rounded-full bg-target"></span>
-              <span className="h-3 w-28 rounded-full bg-target"></span>
-              <span className="h-3 w-14 rounded-full bg-secondaryHover"></span>
-              <span className="h-3 w-20 rounded-full bg-target"></span>
-              <span className="h-3 w-32 rounded-full bg-target"></span>
-              <span className="h-3 w-32 rounded-full bg-secondaryHover"></span>
-              <span className="h-3 w-32 rounded-full bg-secondaryHover"></span>
-              <span className="h-3 w-20 rounded-full bg-target"></span>
-              <span className="h-3 w-28 rounded-full bg-target"></span>
-              <span className="h-3 w-14 rounded-full bg-secondaryHover"></span>
-            </div>
-          </div>
+          From real-time canvases to finance tools, I build web products with React,
+          Next.js, TypeScript, and whatever else the problem calls for. I like clean
+          abstractions, honest interfaces, and teams that enjoy making things well.
+          <Link href="#contact" className="group mt-7 flex w-fit items-center gap-2 font-semibold text-target">
+            Let&apos;s talk <ArrowUpRight size={18} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+          </Link>
         </MotionDiv>
       </div>
     </SectionContainer>

@@ -1,105 +1,63 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-
-import { SectionContainer } from '../SectionContainer'
-import { ProjectCard } from './ProjectCard'
+import { useState } from 'react'
+import { ArrowDown, ArrowUp } from 'lucide-react'
 
 import { MotionDiv } from '@/app/lib/motion'
 import { projectsData } from '@/app/utils/data'
-import { useAnimation, useInView } from 'framer-motion'
-import { MoveDown } from 'lucide-react'
 
-const container = {
-  hidden: { opacity: 1, scale: 0 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      delayChildren: 0.3,
-      staggerChildren: 0.2
-    }
-  }
-}
+import { ProjectCard } from './ProjectCard'
 
-const item = {
-  hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1
-  }
-}
-
-const projectsPerPage = 4
-const projectsIncrement = 4
+const projectLayout = [
+  'col-span-12',
+  'col-span-7 md:col-span-8 sm:col-span-1',
+  'col-span-5 pt-24 md:col-span-4 md:pt-16 sm:col-span-1 sm:pt-0',
+  'col-span-5 md:col-span-4 sm:col-span-1',
+  'col-span-7 pt-20 md:col-span-8 md:pt-12 sm:col-span-1 sm:pt-0',
+]
 
 export const Projects = () => {
-  const [showMore, setShowMore] = useState(false)
-
-  const ref = useRef(null)
-  const isInView = useInView(ref)
-  const controls = useAnimation()
-
-  useEffect(() => {
-    if (isInView) {
-      controls.start('visible')
-    }
-  }, [isInView])
+  const [showAll, setShowAll] = useState(false)
+  const visibleProjects = showAll ? projectsData : projectsData.slice(0, 4)
 
   return (
-    <SectionContainer id="projects" title="Projects">
-      <div ref={ref}>
-        <MotionDiv
-          variants={container}
-          initial="hidden"
-          animate={controls}
-          className="grid grid-cols-2 gap-32 md:gap-16 sm:grid-cols-1 sm:justify-items-center"
-        >
-          {projectsData.slice(0, projectsPerPage).map((project, index) => (
-            <MotionDiv
-              variants={item}
-              transition={{ duration: 0.3 }}
-              key={index}
-              className="relative flex flex-col gap-3 sm:max-w-sm"
-            >
-              <ProjectCard projectData={project} />
-            </MotionDiv>
-          ))}
-          {showMore &&
-            projectsData
-              .slice(projectsPerPage, projectsPerPage + projectsIncrement)
-              .map((project, index) => (
-                <MotionDiv
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                  key={index}
-                  className="relative flex flex-col gap-3 sm:max-w-sm"
-                >
-                  <ProjectCard projectData={project} />
-                </MotionDiv>
-              ))}
-        </MotionDiv>
-        <MotionDiv
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.5 }}
-          viewport={{ once: true }}
-          className="border-t-1 mt-14 flex justify-center"
-        >
-          <button
-            className="flex items-center gap-x-2 rounded-lg text-lg transition hover:bg-opacity-80 hover:text-target"
-            onClick={() => setShowMore(!showMore)}
+    <section id="projects" className="mx-auto max-w-6xl scroll-mt-28 py-28 sm:py-20">
+      <header className="grid grid-cols-12 items-end gap-6 border-t pt-4 sm:grid-cols-1">
+        <div className="col-span-3 mono-label text-target sm:col-span-1">03 / selected releases</div>
+        <div className="col-span-7 md:col-span-6 sm:col-span-1">
+          <h2 className="display-type text-[clamp(3.8rem,8.5vw,7.5rem)]">LOOK<br />CLOSER.</h2>
+        </div>
+        <p className="col-span-2 pb-1 text-sm leading-relaxed opacity-60 md:col-span-3 sm:col-span-1 sm:max-w-md">
+          Every build has more than one view. Switch the active screen to inspect each product from another angle.
+        </p>
+      </header>
+
+      <div className="mt-14 grid grid-cols-12 gap-x-6 gap-y-20 sm:mt-10 sm:grid-cols-1 sm:gap-y-14">
+        {visibleProjects.map((project, index) => (
+          <MotionDiv
+            key={project.name}
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.65, delay: Math.min(index * 0.08, 0.32), ease: [0.22, 1, 0.36, 1] }}
+            className={projectLayout[index]}
           >
-            Show {showMore ? 'Less' : 'More'}{' '}
-            <MoveDown
-              width={20}
-              height={20}
-              className={`${showMore ? 'rotate-180' : ''} transition-transform`}
-            />
-          </button>
-        </MotionDiv>
+            <ProjectCard projectData={project} featured={index === 0} index={index} />
+          </MotionDiv>
+        ))}
       </div>
-    </SectionContainer>
+
+      {projectsData.length > 4 && (
+        <button
+          type="button"
+          onClick={() => setShowAll(!showAll)}
+          className="group mt-20 flex w-full items-center justify-between border-y py-4 text-left transition-colors hover:text-target"
+          aria-expanded={showAll}
+        >
+          <span className="mono-label">{showAll ? 'Fold the archive' : 'Unfold one more release'}</span>
+          {showAll ? <ArrowUp size={18} /> : <ArrowDown size={18} className="transition-transform group-hover:translate-y-1" />}
+        </button>
+      )}
+    </section>
   )
 }
